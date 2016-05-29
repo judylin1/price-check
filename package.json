@@ -31,9 +31,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1",
     "sanitize-html": "^1.11.3",
-    "slug": "^0.9.1"
-  },
-  "devDependencies": {
+    "slug": "^0.9.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
