@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
 
 function PostListItem(props) {
   return (
@@ -11,8 +12,8 @@ function PostListItem(props) {
       </h3>
       <p className="author-name">By {props.post.name}</p>
       <p className="post-desc">{props.post.content}</p>
-      <p className="post-action"><a href="#" onClick={props.onDelete}>Delete Post</a></p>
-      <hr className="divider"/>
+      <Button bsStyle="danger" bsSize="xsmall"><a href="#" onClick={props.onDelete} style={{ color: 'white' }}>Delete</a></Button>
+      <hr className="divider" />
     </div>
   );
 }
