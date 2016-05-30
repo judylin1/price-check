@@ -8,8 +8,9 @@ export function addPost(post) {
   return {
     type: ActionTypes.ADD_POST,
     name: post.name,
-    title: post.title,
-    content: post.content,
+    store: post.store,
+    dateChecked: post.dateChecked,
+    price: post.price,
     slug: post.slug,
     cuid: post.cuid,
     _id: post._id,
@@ -30,8 +31,9 @@ export function addPostRequest(post) {
       body: JSON.stringify({
         post: {
           name: post.name,
-          title: post.title,
-          content: post.content,
+          store: post.store,
+          dateChecked: post.dateChecked,
+          price: post.price,
         },
       }),
       headers: new Headers({

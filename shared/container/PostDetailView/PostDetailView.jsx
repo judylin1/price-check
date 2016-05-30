@@ -4,6 +4,7 @@ import * as Actions from '../../redux/actions/actions';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Helmet from 'react-helmet';
+const moment = require('moment');
 
 class PostDetailView extends Component {
 
@@ -26,14 +27,15 @@ class PostDetailView extends Component {
   render() {
     return (
       <div>
-        <Helmet title={this.props.post.title} />
+        <Helmet title={this.props.post.store} />
 
-        <Header onClick={function noop() {}} handleLogoClick={this.handleLogoClick}/>
+        <Header onClick={function noop() {}} handleLogoClick={this.handleLogoClick} />
         <div className="container">
           <div className="single-post post-detail">
-            <h3 className="post-title">{this.props.post.title}</h3>
-            <p className="author-name">By {this.props.post.name}</p>
-            <p className="post-desc">{this.props.post.content}</p>
+            <p className="post-title">{this.props.post.name}</p>
+            <h3 className="post-desc"><b>Store: </b>{this.props.post.store}</h3>
+            <p className="post-desc"><b>Date Checked: </b>{moment(this.props.post.dateChecked).format('MM/DD/YYYY')}</p>
+            <p className="post-desc"><b>Price: </b>${this.props.post.price}</p>
           </div>
         </div>
         <Footer />
@@ -53,8 +55,9 @@ PostDetailView.contextTypes = {
 PostDetailView.propTypes = {
   post: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    store: PropTypes.string.isRequired,
+    dateChecked: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   }).isRequired,

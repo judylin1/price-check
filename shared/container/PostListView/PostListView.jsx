@@ -8,16 +8,18 @@ function PostListView(props) {
     <div className="listView">
       {
         props.posts.map((post, i) => (
-          <PostListItem post={post} key={i}
-          onClick={function handleClick() {
-            props.dispatch(Actions.addSelectedPost(post));
-          }}
-          onDelete={function handleDelete() {
-            if (confirm('Do you want to delete this post')) { // eslint-disable-line
-              props.dispatch(Actions.deletePostRequest(post));
-            }
-          }}
-        />
+          <PostListItem
+            post={post}
+            key={i}
+            onClick={function handleClick() {
+              props.dispatch(Actions.addSelectedPost(post));
+            }}
+            onDelete={function handleDelete() {
+              if (confirm('Do you want to delete this post')) { // eslint-disable-line
+                props.dispatch(Actions.deletePostRequest(post));
+              }
+            }}
+          />
         ))
       }
     </div>
@@ -27,8 +29,9 @@ function PostListView(props) {
 PostListView.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    store: PropTypes.string.isRequired,
+    dateChecked: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
   })).isRequired,

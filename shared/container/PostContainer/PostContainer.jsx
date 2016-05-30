@@ -16,25 +16,24 @@ class PostContainer extends Component {
     this.add = this.add.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.posts.length === 0) {
+      this.props.dispatch(Actions.fetchPosts());
+    }
+  }
+
   handleClick(e) {
     this.setState({
       showAddPost: !this.state.showAddPost,
     });
-
     e.preventDefault();
   }
 
-  add(name, title, content) {
-    this.props.dispatch(Actions.addPostRequest({ name, title, content }));
+  add(name, store, dateChecked, price) {
+    this.props.dispatch(Actions.addPostRequest({ name, store, dateChecked, price }));
     this.setState({
       showAddPost: false,
     });
-  }
-
-  componentDidMount() {
-    if(this.props.posts.length === 0) {
-      this.props.dispatch(Actions.fetchPosts());
-    }
   }
 
   render() {
@@ -42,9 +41,11 @@ class PostContainer extends Component {
       <div>
         <Header onClick={this.handleClick} />
         <div className="container">
-          <PostCreateView addPost={this.add}
-            showAddPost={this.state.showAddPost}/>
-          <PostListView posts={this.props.posts}/>
+          <PostCreateView
+            addPost={this.add}
+            showAddPost={this.state.showAddPost}
+          />
+          <PostListView posts={this.props.posts} />
         </div>
         <Footer />
       </div>
@@ -66,8 +67,9 @@ function mapStateToProps(store) {
 PostContainer.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    store: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    dateChecked: PropTypes.string.isRequired,
   })).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
